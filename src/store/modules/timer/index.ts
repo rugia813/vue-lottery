@@ -1,20 +1,23 @@
-import { Module } from 'vuex';
-import { getters } from './getters';
 import { actions } from './actions';
 import { mutations } from './mutations';
 import { TimerState } from './types';
-import { RootState } from '@/store/types';
+import storeBuilder from "@/store/storeBuilder";
 
-export const state: TimerState = {
-    remainTime: 0
+const state: TimerState = {
+    endTime: 0
 };
 
-const namespaced: boolean = true;
+const b = storeBuilder.module<TimerState>('Timer', state)
+const stateGetter = b.state()
 
-export const timer: Module<TimerState, RootState> = {
-    namespaced,
-    state,
-    getters,
-    actions,
-    mutations
-};
+export default {
+    get state() {
+        return stateGetter()
+    },
+    mutations:{
+        setEndTime: b.commit(mutations.setEndTime),
+    },
+    actions: {
+        init: b.dispatch(actions.init)
+    }
+}

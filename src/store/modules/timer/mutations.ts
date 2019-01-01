@@ -1,8 +1,8 @@
 import { MutationTree } from 'vuex';
 import { TimerState } from './types';
 
-export const mutations: MutationTree<TimerState> = {
-    setRemainTime(state, ms : number) {
-        state.remainTime = ms
+export const mutations = {
+    setEndTime(state: TimerState, ms: number) {
+        state.endTime = ms
     }
 };

@@ -1,14 +1,10 @@
 import Vue from 'vue'
-import Vuex, { StoreOptions } from 'vuex'
+import Vuex, { Store } from 'vuex'
 import { RootState } from './types'
-import { timer } from './modules/timer'
+import { getStoreBuilder } from "vuex-typex";
 
 Vue.use(Vuex)
 
-const store: StoreOptions<RootState> = {
-  modules: {
-    timer
-  }
-}
+const store: Store<RootState> = getStoreBuilder<RootState>().vuexStore() 
 
 export default new Vuex.Store<RootState>(store)

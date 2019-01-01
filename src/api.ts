@@ -1,5 +1,6 @@
 import axios from 'axios'
 import httpAdapter from 'axios'
+import timerFixture from "@/fixtures/timer";
 
 const instance = axios.create({
     baseURL: '/',
@@ -8,9 +9,11 @@ const instance = axios.create({
 
 export default {
     timer() {
-        return {
-            endTime: Date.now() + 30000
-        }
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                res(timerFixture)
+            }, 1000);
+        })
         return instance
             .get('/timer')
             .then(result => result.data)

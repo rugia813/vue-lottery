@@ -6,5 +6,5 @@
 // }
 
 export interface TimerState {
-    remainTime: number
+    endTime: number
 }
