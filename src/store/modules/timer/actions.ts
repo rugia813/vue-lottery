@@ -1,5 +1,3 @@
-import { ActionTree, ActionContext } from 'vuex';
-import axios from 'axios';
 import { TimerState } from './types';
 import { RootState } from '@/store/types';
 import api from '@/api'
