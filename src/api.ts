@@ -11,7 +11,9 @@ export default {
     timer() {
         return new Promise((res, rej) => {
             setTimeout(() => {
-                res(timerFixture)
+                res({
+                    endTime: Date.now() + 30000
+                })
             }, 1000);
         })
         return instance

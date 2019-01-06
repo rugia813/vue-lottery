@@ -1,18 +1,25 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <Timer msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Timer @done="announce" />
+    <BetItemSelector />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Timer from '@/components/Timer.vue'; // @ is an alias to /src
+import Timer from '@/components/Timer.vue';
+import BetItemSelector from "@/components/BetItemSelector.vue";
 
 @Component({
   components: {
     Timer,
+    BetItemSelector,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  announce() {
+    console.log('new issue!')
+  }
+}
 </script>

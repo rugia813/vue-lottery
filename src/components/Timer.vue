@@ -6,20 +6,23 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { State, Action, Getter } from 'vuex-class';
 import Component from 'vue-class-component';
-import { TimerState } from '@/store/modules/timer/types';
 import Timer from "@/store/modules/timer";
+import { Emit, Prop } from 'vue-property-decorator';
 
 @Component
-export default class HelloWorld extends Vue {
+export default class cTimer extends Vue {
     elapsedTIme: number = 0;
     intervalId: number = 0
     hh: number = 0
     mm: number = 0
     ss: number = 0
 
-    async mounted() {
+    mounted() {
+      this.init()
+    }
+
+    async init() {
       await Timer.actions.init()
       this.setupTimer()
       this.intervalId = setInterval(this.tick, 1000)
@@ -33,16 +36,28 @@ export default class HelloWorld extends Vue {
     }
 
     tick() {
-      if (this.ss < 0) {
-        this.mm--
-        this.ss = 59
-        if (this.mm < 0) {
-          this.hh--
-          this.mm = 59
+      if (this.ss === 0) {
+        if (this.mm === 0) {
+          if (this.hh === 0) {
+            this.done()
+          } else {
+            this.hh--
+            this.mm = 59
+            this.ss = 59
+          }
+        } else {
+          this.mm--
+          this.ss = 59
         }
       } else {
         this.ss--
       }
+    }
+
+    @Emit()
+    done() {
+      clearInterval(this.intervalId)
+      this.init()
     }
 
     padTo2(num: number) : string{
