@@ -20,6 +20,7 @@ export default class cTimer extends Vue {
 
     mounted() {
       this.init()
+      console.log(this.$store)
     }
 
     async init() {

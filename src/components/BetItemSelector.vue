@@ -4,7 +4,7 @@
             <span v-for="(item, o) in line" :key="o">
                 <BetItemButton 
                     :betItem="item" 
-                    :isSelected="selected[i][o]" 
+                    :isSelected="selectedIdxes[i][o]" 
                     @select="select(i, o)"
                 />
             </span>
@@ -17,6 +17,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Emit, Prop } from 'vue-property-decorator';
 import BetItemButton from "./BetItemButton.vue";
+import { Order } from "@/store";
 
 @Component({
     components: {
@@ -30,18 +31,23 @@ export default class BetItemSelector extends Vue {
         [1, 2, 3, 4, 5, 6, 7, 8, 9],
         ['aaa', 'bbb', 'ccc'],
     ]
-    selected: any = []
+
+    get selectedIdxes() {
+        console.log('Order.state.selectedIdxes: ', Order.state.selectedIdxes);
+        return Order.state.selectedIdxes
+    }
 
     created() {
         this.betItems.forEach((line, i) => {
-            this.selected[i] = new Array(line.length).fill(false)
+            this.selectedIdxes[i] = new Array(line.length).fill(false)
         })
+        Order.actions.setSelectedIdxes(this.selectedIdxes)
     }
 
     select(x:number, y:number) {
-        console.log(x, y)
-        const selected = this.selected
-        selected[x][y] = !selected[x][y]
+        const selectedIdxes = JSON.parse(JSON.stringify(this.selectedIdxes))
+        selectedIdxes[x][y] = !selectedIdxes[x][y]
+        Order.actions.setSelectedIdxes(selectedIdxes)
         this.$forceUpdate()
     }
 }

@@ -2,11 +2,7 @@
     <span 
         @click="$emit('select')"
     >
-        <button
-            :class="{
-                red: isSelected
-            }"
-        >
+        <button :class="{ red: isSelected }" >
             {{betItem}}
         </button>
     </span>
