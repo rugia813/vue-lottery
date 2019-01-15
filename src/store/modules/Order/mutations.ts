@@ -1,7 +1,8 @@
 import { MutationTree } from 'vuex';
 import { OrderState, Order } from './types';
+import { orderStore } from './state';
 
-export const mutations = {
+export const m = {
     add(state: OrderState, order: Order) {
         state.orderList.push(order)
     },
@@ -13,7 +14,12 @@ export const mutations = {
     },
     setSelectedIdxes(state: OrderState, selectedIdxes: any[]) {
         state.selectedIdxes = selectedIdxes
-    }
+    },
 };
 
-
+export default {
+    add: orderStore.commit(m.add),
+    replaceAt: orderStore.commit(m.replaceAt),
+    deleteAt: orderStore.commit(m.deleteAt),
+    setSelectedIdxes: orderStore.commit(m.setSelectedIdxes),
+}

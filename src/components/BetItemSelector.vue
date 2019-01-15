@@ -45,10 +45,11 @@ export default class BetItemSelector extends Vue {
     }
 
     select(x:number, y:number) {
-        const selectedIdxes = JSON.parse(JSON.stringify(this.selectedIdxes))
+        const selectedIdxes = this.selectedIdxes
         selectedIdxes[x][y] = !selectedIdxes[x][y]
+        this.$set(this.selectedIdxes, `[${x}][${y}]`, !selectedIdxes[x][y])
         Order.actions.setSelectedIdxes(selectedIdxes)
-        this.$forceUpdate()
+        // this.$forceUpdate()
     }
 }
 </script>
