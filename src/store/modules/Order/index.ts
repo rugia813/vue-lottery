@@ -1,6 +1,6 @@
 import actions from './actions';
 import mutations from './mutations';
-import { stateGetter, orderStore } from "./state";
+import { stateGetter } from "./state";
 
 export default {
     get state() {
