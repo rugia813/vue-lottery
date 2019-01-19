@@ -33,7 +33,6 @@ export default class BetItemSelector extends Vue {
     ]
 
     get selectedIdxes() {
-        console.log('Order.state.selectedIdxes: ', Order.state.selectedIdxes);
         return Order.state.selectedIdxes
     }
 
@@ -45,11 +44,7 @@ export default class BetItemSelector extends Vue {
     }
 
     select(x:number, y:number) {
-        const selectedIdxes = this.selectedIdxes
-        selectedIdxes[x][y] = !selectedIdxes[x][y]
-        this.$set(this.selectedIdxes, `[${x}][${y}]`, !selectedIdxes[x][y])
-        Order.actions.setSelectedIdxes(selectedIdxes)
-        // this.$forceUpdate()
+        Order.actions.selectItem({x, y})
     }
 }
 </script>
