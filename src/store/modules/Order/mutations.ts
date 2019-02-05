@@ -13,10 +13,18 @@ function deleteAt(state: OrderState, idx: number) {
 function setSelectedIdxes(state: OrderState, selectedIdxes: any[]) {
     state.selectedIdxes = selectedIdxes
 }
+function setBetCount(state: OrderState, betCount: number) {
+    state.currentBetCount = betCount
+}
+function setPrice(state: OrderState, price: number) {
+    state.currentPrice = price
+}
 
 export default {
     add: orderStore.commit(add),
     replaceAt: orderStore.commit(replaceAt),
     deleteAt: orderStore.commit(deleteAt),
     setSelectedIdxes: orderStore.commit(setSelectedIdxes),
+    setBetCount: orderStore.commit(setBetCount),
+    setPrice: orderStore.commit(setPrice),
 }

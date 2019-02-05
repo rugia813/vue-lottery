@@ -1,5 +1,5 @@
 import actions from './actions';
-// import mutations from './mutations';
+import mutations from './mutations';
 import { stateGetter } from "./state";
 
 export default {
@@ -16,7 +16,7 @@ export default {
         ]
         return betItems.map((items, i) => items[selectedIdxes[i]])
     },
-    // mutations,
+    mutations,
     actions
 }
 

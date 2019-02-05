@@ -1,6 +1,8 @@
 export interface OrderState {
     orderList: Order[],
     selectedIdxes: any[],
+    currentBetCount: number,
+    currentPrice: number,
 }
 
 export interface Order {
