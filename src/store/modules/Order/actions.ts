@@ -1,6 +1,8 @@
 import { Order } from './types';
 import mutations from "./mutations";
 import { orderStore } from './state';
+import LotteryFactory from '@/entities/lotteries/LotteryFactory'
+import { Lottery } from '@/entities/lotteries/Lottery';
 
 function add({state}: any, order: Order) {
     mutations.add(order)
@@ -28,16 +30,14 @@ function clearSelection({state}: any) {
     mutations.setSelectedIdxes(selectedIdxes)
     calcBet(selectedIdxes)
 }
-function calcBet(selectedIdxes: any[]) {
+async function calcBet(selectedIdxes: any[]) {
     //not real calculation
     //use Lottery class to implement different calculation for each game type
-    const total = selectedIdxes.reduce((prev, cur) => {
-        const rowSum = cur.filter((v: boolean) => v).length
-        return prev + rowSum
-    }, 0)
+    const Lottery: Lottery = await LotteryFactory.getLottery('SSC_5Star')
+    const {betCount, price} = Lottery.calcBet(selectedIdxes)
     
-    mutations.setBetCount(total)
-    mutations.setPrice(total * 2)
+    mutations.setBetCount(betCount)
+    mutations.setPrice(price)
 }
 
 export default {

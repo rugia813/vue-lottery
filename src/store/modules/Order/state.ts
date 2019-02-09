@@ -6,6 +6,7 @@ const initialState: OrderState = {
     selectedIdxes: [],
     currentBetCount: 0,
     currentPrice: 0,
+    currentLottery: null,
 };
 
 export const orderStore = storeBuilder.module<OrderState>('Order', initialState)

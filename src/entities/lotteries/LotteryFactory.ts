@@ -1,7 +1,12 @@
+import { Lottery } from './Lottery';
+
 class LotteryFactory {
     cache: any[] = []
 
-    getLottery(ltName: string) {
-        
+    async getLottery(ltName: string): Promise<Lottery> {
+        const l = await import('./Lottery')
+        return new l.SSC_5Star()
     }
 }
+
+export default new LotteryFactory()

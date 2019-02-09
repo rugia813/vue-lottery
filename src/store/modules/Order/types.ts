@@ -1,8 +1,11 @@
+import { Lottery } from '@/entities/lotteries/Lottery';
+
 export interface OrderState {
     orderList: Order[],
     selectedIdxes: any[],
     currentBetCount: number,
     currentPrice: number,
+    currentLottery: Lottery|null|Promise<Lottery>
 }
 
 export interface Order {

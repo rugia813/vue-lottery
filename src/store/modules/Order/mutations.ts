@@ -1,6 +1,10 @@
 import { OrderState, Order } from './types';
 import { orderStore } from './state';
+import LotteryFactory from '@/entities/lotteries/LotteryFactory';
 
+function setLottery(state: OrderState, lotteryName: string) {
+    state.currentLottery = LotteryFactory.getLottery(lotteryName)
+}
 function add(state: OrderState, order: Order) {
     state.orderList.push(order)
 }
@@ -21,6 +25,7 @@ function setPrice(state: OrderState, price: number) {
 }
 
 export default {
+    setLottery: orderStore.commit(setLottery),
     add: orderStore.commit(add),
     replaceAt: orderStore.commit(replaceAt),
     deleteAt: orderStore.commit(deleteAt),
