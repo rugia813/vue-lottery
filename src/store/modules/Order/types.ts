@@ -5,7 +5,7 @@ export interface OrderState {
     selectedIdxes: any[],
     currentBetCount: number,
     currentPrice: number,
-    currentLottery: Lottery|null|Promise<Lottery>
+    currentLottery: Lottery
 }
 
 export interface Order {

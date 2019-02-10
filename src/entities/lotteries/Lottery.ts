@@ -23,7 +23,6 @@ export class betItemRow {
         public content: any[], 
         public canMultSelect: boolean
     ) {
-
     }
 }
 
